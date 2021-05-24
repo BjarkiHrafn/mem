@@ -11,7 +11,7 @@ class ListItem extends React.Component {
   }
 
   goToDetail() {
-    const navigation = useNavigation();
+    console.log(this.props)
     this.props.navigation.navigate('Detail', { title: this.state.title, subtitle: this.state.subtitle })
   }
 

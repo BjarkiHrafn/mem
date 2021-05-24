@@ -35,10 +35,9 @@ const Adding = ({ route, navigation }) => {
         title = "Add"
         color='black'
         onPress={() => {
-          navigation.navigate({
-            name: 'Home',
-            params: { title: title, subtitle: subtitle }
-          })} }
+          navigation.navigate(
+            'Home', { title: title, subtitle: subtitle }
+          )} }
       />
     </SafeAreaView>
   )

@@ -16,26 +16,23 @@ class Home extends React.Component {
     this.state = {
       data: [],
     }
-    React.useEffect(() => {
-      if (this.props.route.params) {
-        //this.setState({ data: [...this.state.data, this.props.route.params] })
-        this.props.navigation.popToTop()
-      }
-    }, [this.props.route.params]);
   }
 
-  onCallbackAdd = (data) => {
-    this.setState({ data: [...this.state.data, data] })
-    this.props.navigation.popToTop()
+  componentDidUpdate(prevProps) {
+    if(prevProps.route.params !== this.props.route.params) {
+      this.setState({
+        data: [...this.state.data, this.props.route.params]
+      })
+    }
   }
 
   onAdd() {
-    this.props.navigation.navigate('Adding', { onAdd: this.onCallbackAdd.bind(this) })
+    this.props.navigation.navigate('Adding')
   }
 
   onRandom() {
     if (this.state.data.length != 0) {
-      var randomListIndex = Math.floor(Math.random() * this.state.data.length) + 1;
+      var randomListIndex = Math.floor(Math.random() * this.state.data.length);
       this.setState({
         data: [...this.state.data, this.state.data[randomListIndex]]
       })
@@ -90,7 +87,6 @@ class Home extends React.Component {
    container: {
     alignItems: 'center',
     flex: 1,
-    //justifyContent: 'flex-start',
     backgroundColor: '#565657',
     paddingTop: 100,
    },
